@@ -11,7 +11,7 @@ def convert_10_to_20(num):
         num //= 20
         c_digits.append(num % 20)
 
-    #trim leading 0 if num 
+    #trim leading 0's
     if c_digits[-1] == 0:
         c_digits = c_digits[:-1]
         
