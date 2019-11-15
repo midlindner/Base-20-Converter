@@ -1,0 +1,38 @@
+def convert_10_to_20(num):
+    if num < 20: return chr(num + 65), str(chr(num + 48)) if num < 10 else chr(num % 10 + 97)
+    n = num % 20
+    digits = chr(n + 65)
+    digits2 = str(chr(n + 48)) if n < 10 else chr(n % 10 + 97)
+    
+    num -= num % 20
+    
+    while num > 1:
+        num //= 20
+        n = num % 20
+        digits = chr(n + 65) + digits
+        digits2 = str(chr(n + 48)) + digits2 if n < 10 else chr(n % 10 + 97) + digits2
+    return digits.lstrip('A'), digits2.lstrip('0')
+
+#examples      
+for val in [0, 1, 7, 15, 23, 39, 40, 41, 60, 399, 400, 401, 402, 10275, 25768]:
+    a, b = convert_10_to_20(val)
+    print(f'{val} in base 20 is: {a} or {b}')
+    
+#Outputs:
+'''
+0 in base 20 is: A or 0
+1 in base 20 is: B or 1
+7 in base 20 is: H or 7
+15 in base 20 is: P or f
+23 in base 20 is: BD or 13
+39 in base 20 is: BT or 1j
+40 in base 20 is: CA or 20
+41 in base 20 is: CB or 21
+60 in base 20 is: DA or 30
+399 in base 20 is: TT or jj
+400 in base 20 is: BAA or 100
+401 in base 20 is: BAB or 101
+402 in base 20 is: BAC or 102
+10275 in base 20 is: BFNP or 15df
+25768 in base 20 is: DEII or 3488
+'''
