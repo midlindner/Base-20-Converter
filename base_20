@@ -1,0 +1,23 @@
+b_20_digits = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T']
+b_20_digits2 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+
+def convert_10_to_20(num):
+    if num == 0: return ('A', '0')
+    c_digits = []
+    c_digits.append(num % 20)
+    num -= c_digits[0]
+    
+    while num > 1:
+        num //= 20
+        c_digits.append(num % 20)
+
+    #trim leading 0 if num 
+    if c_digits[-1] == 0:
+        c_digits = c_digits[:-1]
+        
+    return ''.join([b_20_digits[i] for i in reversed(c_digits)]), ''.join([b_20_digits2[i] for i in reversed(c_digits)])
+    
+#examples      
+for val in [0, 1, 15, 42, 402, 10275, 25768]:
+    a, b = convert_10_to_20(val)
+    print(f'{val} in base 20 is: {a} or {b}')
